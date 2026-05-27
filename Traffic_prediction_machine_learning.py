@@ -1,3 +1,4 @@
+
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -6,15 +7,15 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, classification_report
 import datetime
 
-# Load the data
+# Loading the data
 df = pd.read_csv('traffic.csv')
 
 # Basic preprocessing
 print("Dataset shape:", df.shape)
 print("\nUnique Traffic Situations:", df['Traffic Situation'].unique())
 
-# Feature engineering
-# Convert Time to minutes since midnight
+#feature engenering
+# Convert Time to minutes
 def time_to_minutes(t):
     try:
         time_obj = datetime.datetime.strptime(t.strip(), '%I:%M:%S %p')
@@ -34,7 +35,7 @@ X = df[features]
 y = df['Traffic Situation']
 
 # Handle any missing values
-X = X.fillna(X.median())g
+X = X.fillna(X.median())
 
 # Split data: 70% train, 30% test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
